@@ -8,6 +8,12 @@ from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 classes = ['Sand', 'Clay', 'Sandy Loam', 'Loam']
 directories = ['/data/Sand', '/data/Clay', '/data/Sandy Loam', '/data/Loam']
 
+def load_image(file_path):
+    img = cv2.imread(file_path)
+    img = cv2.resize(img, (64, 64))
+    img = img / 255.0
+    return np.expand_dims(img, axis=0)
+
 # Load the data
 data = []
 labels = []
@@ -50,3 +56,16 @@ model.fit(train_data, train_labels, epochs=10, batch_size=32)
 loss, accuracy = model.evaluate(test_data, test_labels)
 print('Test loss:', loss)
 print('Test accuracy:', accuracy)
+
+# Prompt the user for an image file path
+image_file = input("Enter the path to the image file: ")
+
+# Load and preprocess the input image
+input_image = load_image(image_file)
+
+# Predict the soil type of the input image
+prediction = model.predict(input_image)
+predicted_class = np.argmax(prediction)
+predicted_soil_type = classes[predicted_class]
+
+print("Predicted soil type:", predicted_soil_type)
