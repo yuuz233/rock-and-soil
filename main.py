@@ -8,9 +8,18 @@ from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 classes = ['Sand', 'Clay', 'Sandy Loam', 'Loam']
 directories = ['/data/Sand', '/data/Clay', '/data/Sandy Loam', '/data/Loam']
 
+"""
+Load an image from a file path and preprocess it for a machine learning model.
+
+Parameters:
+    file_path (str): The path to the image file.
+
+Returns:
+    numpy.ndarray: The preprocessed image as a numpy array.
+"""
 def load_image(file_path):
     img = cv2.imread(file_path)
-    img = cv2.resize(img, (64, 64))
+    img = cv2.resize(img, (128, 128))  # Resize the image to a fixed size
     img = img / 255.0
     return np.expand_dims(img, axis=0)
 
