@@ -15,7 +15,6 @@ dataset_path = 'Soil Data'
 initial_transform = transforms.ToTensor()
 dataset = datasets.ImageFolder(root=dataset_path, transform=initial_transform)
 
-
 # Data augmentation
 augmentation_transform = transforms.Compose([
     transforms.Resize((128, 128)),
@@ -56,8 +55,6 @@ class SandNet(nn.Module):
 
 model = SandNet()
 print('model created')
-
-
 
 optimizer = Adam(model.parameters(), lr=0.001)
 criterion = CrossEntropyLoss()
