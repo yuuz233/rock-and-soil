@@ -1,0 +1,1 @@
+Dataset is stored in as `/data/Silt/*.jpg` `/data/Sand/*.jpg` etc.
